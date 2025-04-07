@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="webico.png" type="image/png">
+
+    <meta name="description"
+        content="如何定位微信好友所在的位置,怎么查对方微信位置,微信获取好友位置,微信能查到对方的位置吗,微信直接获取好友位置,微信怎么获取好友位置,微信怎么定位好友位置,如何在对方不知情的情况下定位微信好友;微信隐藏了找人功能，按一下就能知道对方的具体位置，很实用">
+
+    <meta name="keywords"
+        content="如何定位微信好友所在的位置,微信能查到对方的位置吗,怎么查对方微信位置,如何在对方不知情的情况下定位微信好友,怎么定位微信好友位置,微信获取好友位置,微信直接获取好友位置,微信怎么获取好友位置,微信怎么定位好友位置">
+
+
+    <title>微信获取好友位置</title>
+    <style>
+        :root {
+            --primary: #07C160;
+            --secondary: #1AAD19;
+            --accent: #10AEFF;
+            --light-bg: #F7F7F7;
+            --dark-text: #333333;
+            --medium-text: #666666;
+            --light-text: #999999;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F5F7FA 0%, #E4E8EB 100%);
+            color: var(--dark-text);
+            line-height: 1.7;
+            padding: 15px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 18px;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--secondary);
+            margin: 28px 0 18px 0;
+            padding-left: 12px;
+            border-left: 4px solid var(--accent);
+            font-weight: 500;
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--medium-text);
+        }
+
+        .img-container {
+            margin: 25px 0;
+            text-align: center;
+            background: linear-gradient(145deg, #f9f9f9 0%, #ffffff 100%);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .img-caption {
+            color: var(--light-text);
+            font-size: 14px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--medium-text);
+            position: relative;
+            padding-left: 10px;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 20px;
+            position: absolute;
+            left: -10px;
+            top: -2px;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, rgba(16, 174, 255, 0.08) 0%, rgba(26, 173, 25, 0.08) 100%);
+            padding: 20px;
+            border-radius: 14px;
+            margin-top: 25px;
+            border: 1px solid rgba(16, 174, 255, 0.2);
+        }
+
+        .conclusion h2 {
+            color: var(--accent);
+        }
+
+        .step-box {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .step-title {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-title::before {
+            content: "✓";
+            color: white;
+            background: var(--primary);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        .note {
+            background: #FFF9E6;
+            border-left: 4px solid #FFC107;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>微信获取好友位置</h1>
+        <!-- <p style="color:var(--dark-text); text-align:center;">本文将详细介绍如何在手机上设置和修改共享位置，特别是通过微信实现实时位置共享的方法。通过这些设置，您可以更轻松地与他人分享您的位置，从而提升交流的便捷性。</p> -->
+    </div>
+
+    <div class="container">
+        <h2>一、解压wx.zip，安装【微信(Internal Beta).apk】</h2>
+        <!-- <p>首先，您需要在手机上启用共享位置功能。这通常涉及进入手机的设置菜单，找到"位置"或"定位"选项，并确保其已开启。此外，根据不同的手机操作系统，如Android或iOS，具体的操作步骤可能略有差异。</p>
+         -->
+        <div class="img-container">
+            <img src="01.png" alt="手机定位设置界面示意图">
+            <p class="img-caption">图1：安装app</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-title">系统要求</div>
+            <p>Android 8.0或iOS 12及以上版本系统支持。</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>二、输入你的账号；腾讯员工号和密码 在【id.txt】文件里，前提你先解压wx.zip文件。</h2>
+        <!-- <p>一旦手机共享位置功能启用，您可以通过微信轻松实现实时位置共享。在微信中，选择要共享位置的联系人，点击右下角的"+"号，然后选择"位置"选项。</p> -->
+
+        <div class="img-container">
+            <img src="02.png" alt="微信位置共享界面示意图">
+            <p class="img-caption">图2：微信登录界面</p>
+        </div>
+
+        <!-- <div class="step-box">
+            <div class="step-title">操作步骤</div>
+            <ol style="padding-left:20px;">
+                <li>打开微信对话窗口</li>
+                <li>点击右下角"+"按钮</li>
+                <li>选择"位置"选项</li>
+                <li>选择"共享实时位置"</li>
+            </ol>
+        </div>
+         -->
+        <!-- <div class="note">
+            <strong>提示：</strong>实时位置共享会持续消耗电量，建议在不需要时及时关闭。
+        </div> -->
+    </div>
+
+    <div class="container">
+        <h2>三、选择要查看位置的好友</h2>
+        <p>这里以我的好友【利君】为例。</p>
+
+        <div class="img-container">
+            <img src="03.png" alt="位置共享注意事项示意图">
+            <!-- <p class="img-caption">图3：须发是已互相添加的好友。</p> -->
+        </div>
+
+        <!-- <ul>
+            <li><strong>开启手机定位服务：</strong>在手机的设置中，定位服务是必不可少的。您需要找到并打开它，以确保您的手机能够正常共享位置信息。</li>
+            <li><strong>启用位置共享：</strong>在手机的设置中，找到并启用位置共享功能。一旦开启，您的手机将能够实时与其他设备或用户共享其位置信息。</li>
+            <li><strong>选定共享位置：</strong>选择您希望共享的具体位置，例如您的住址、工作单位或学校等，这样，其他人便能实时追踪到您的位置信息。</li>
+        </ul> -->
+        <div class="note">
+            <strong>提示：</strong>须发是已互相添加的好友。
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>四、点击 “直接获取对方位置”</h2>
+        <!-- <p>首先，你需要打开微信并进入相应的对话框。接着，在对话框中点击位置选项，以便查看和修改你的当前位置。在此，你可以自由选择想要共享的位置，比如家、公司或学校等地点。</p> -->
+
+        <div class="img-container">
+            <img src="04.png" alt="修改微信共享位置示意图">
+            <!-- <p class="img-caption">图4：</p> -->
+        </div>
+
+        <!-- <div class="step-box">
+            <div class="step-title">修改位置步骤</div>
+            <ol style="padding-left:20px;">
+                <li>进入微信对话窗口</li>
+                <li>点击位置图标</li>
+                <li>选择"更新位置"</li>
+                <li>重新选择位置</li>
+                <li>点击"发送"完成修改</li>
+            </ol>
+        </div> -->
+    </div>
+
+
+
+    <div class="container">
+        <h2>五、效果图</h2>
+        <!-- <p>这里以我的好友【利君】为例。</p> -->
+        <div class="img-container">
+            <img src="05.png" alt="位置共享注意事项示意图">
+            <!-- <p class="img-caption">图3：须发是已互相添加的好友。</p> -->
+        </div>
+
+        <!-- <ul>
+            <li><strong>开启手机定位服务：</strong>在手机的设置中，定位服务是必不可少的。您需要找到并打开它，以确保您的手机能够正常共享位置信息。</li>
+            <li><strong>启用位置共享：</strong>在手机的设置中，找到并启用位置共享功能。一旦开启，您的手机将能够实时与其他设备或用户共享其位置信息。</li>
+            <li><strong>选定共享位置：</strong>选择您希望共享的具体位置，例如您的住址、工作单位或学校等，这样，其他人便能实时追踪到您的位置信息。</li>
+        </ul> -->
+    </div>
+
+    <div class="container conclusion">
+        <h2>使用说明</h2>
+        <!-- <p>。总的来说，这些功能使得实时位置共享变得更为容易，从而有效地推动了实时交流的实现。</p> -->
+        <ul>
+            <li><strong>使用时长：</strong> 每天只能获取30好友位置，维持7天。</li>
+            <li><strong>使用有风险吗：</strong>每次获取定位后，必须在设置中点击 ‘清除痕迹’即可。</li>
+            <!-- <li><strong>选定共享位置：</strong>选择您希望共享的具体位置，例如您的住址、工作单位或学校等，这样，其他人便能实时追踪到您的位置信息。</li> -->
+        </ul>
+        <div style="margin-top:15px; display:flex; justify-content:space-between; flex-wrap:wrap;">
+            <!-- <a href="buyserver.php?buy"><span
+                style="background:var(--primary); color:white; padding:6px 12px; border-radius:20px; font-size:14px; margin:5px;">购买工具包</span></a> -->
+            <!-- <span style="background:var(--accent); color:white; padding:6px 12px; border-radius:20px; font-size:14px; margin:5px;">实时更新</span>
+            <span style="background:var(--secondary); color:white; padding:6px 12px; border-radius:20px; font-size:14px; margin:5px;">隐私保护</span>
+            <span style="background:#FFC107; color:#333; padding:6px 12px; border-radius:20px; font-size:14px; margin:5px;">操作简单</span>
+         -->
+
+
+
+
+        </div>
+
+
+
+
+   
+
+    </div>
+
+
+
+</body>
+
+</html>
